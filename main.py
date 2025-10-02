@@ -4,7 +4,11 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from model import *
 from helper import command_generator
-
+import sys
+if sys.platform == "win32":
+    import pathlib
+    pathlib.PosixPath = pathlib.WindowsPath
+    
 app = Flask(__name__)
 CORS(app)
 model = load_model()
